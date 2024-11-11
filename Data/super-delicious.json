@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Spinach and Cheese Pasta",
+        "photo": "/Images/menus/menu2.jpg",
+        "link": "recipe.html?title=Spinach%20and%20Cheese%20Pasta",
+        "rating": 4
+    },
+    {
+        "title": "Fancy Glazed Donuts",
+        "photo": "/Images/menus/menu3.jpg",
+        "link": "recipe.html?title=Fancy%20Glazed%20Donuts",
+        "rating": 5
+    },
+    {
+        "title": "Mighty Cheesy Breakfast Burger",
+        "photo": "/Images/menus/menu4.jpg",
+        "link": "recipe.html?title=Mighty%20Cheesy%20Breakfast%20Burger",
+        "rating": 3
+    }
+]

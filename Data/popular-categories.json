@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Pasta",
+        "photo": "/Images/menus/menu8.png"
+    },
+    {
+        "title": "Pizza",
+        "photo": "/Images/menus/menu9.png"
+    },
+    {
+        "title": "Vegan",
+        "photo": "/Images/menus/menu10.png"
+    },
+    {
+        "title": "Desserts",
+        "photo": "/Images/menus/menu11.png"
+    },
+    {
+        "title": "Smoothies",
+        "photo": "/Images/menus/menu12.png"
+    },
+    {
+        "title": "Breakfast",
+        "photo": "/Images/menus/menu13.png"
+    }
+]

@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Caramel Strawberry Milkshake",
+        "photo": "/Images/menus/menu5.jpg",
+        "rating": 4
+    },
+    {
+        "title": "Chocolate and Banana Jar Cake",
+        "photo": "/Images/menus/menu6.jpg",
+        "rating": 5
+    },
+    {
+        "title": "Berry Madness Biscuits",
+        "photo": "/Images/menus/menu7.jpg",
+        "rating": 3
+    }
+]
