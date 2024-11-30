@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Recipe</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .dynamic-item {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+    .dynamic-item input {
+      flex: 1;
+      margin-right: 5px;
+    }
+    .dynamic-item button {
+      flex: 0;
+      width: auto;
+      padding: 5px;
+      background-color: #dc3545;
+    }
+    .dynamic-item button:hover {
+      background-color: #a71d2a;
+    }
+    .ingredient-group {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f3f3f3;
+    }
+  </style>
+</head>
+<body>
+  <form action="/add-recipe" method="POST" enctype="multipart/form-data">
+    <h2>Add New Recipe</h2>
+
+    <label for="title">Recipe Title</label>
+    <input type="text" id="title" name="title" placeholder="Enter the recipe title" required>
+
+    <label for="full_description">Description</label>
+    <textarea id="full_description" name="full_description" placeholder="Enter the recipe description" required></textarea>
+
+    <label for="photo">Photo</label>
+    <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" required>
+
+    <!-- Categories Section -->
+    <label for="categories">Categories (comma-separated)</label>
+    <input type="text" id="categories" name="categories" placeholder="Enter categories (e.g., Dessert, Baking)" required>
+
+    <!-- Dynamic Ingredients Section -->
+    <div id="ingredients-section">
+      <label>Ingredients</label>
+    </div>
+    <button type="button" id="add-ingredient-group">Add Ingredient Group</button>
+
+    <!-- Dynamic Instructions Section -->
+    <div class="dynamic-section" id="instructions-section">
+      <label>Instructions</label>
+      <div class="dynamic-item">
+        <input type="text" name="instructions[]" placeholder="Instruction (e.g., Preheat oven)" required>
+        <button type="button" class="remove-btn" onclick="removeItem(this)">Remove</button>
+      </div>
+    </div>
+    <button type="button" id="add-instruction">Add Step</button>
+
+    <button type="submit">Add Recipe</button>
+  </form>
+
+  <script>
+    let ingredientGroupCount = 0;
+
+    // Add new ingredient group with heading and associated ingredients
+    document.getElementById('add-ingredient-group').addEventListener('click', () => {
+      const section = document.getElementById('ingredients-section');
+      const groupId = `ingredient-group-${ingredientGroupCount}`;
+      ingredientGroupCount++;
+
+      const ingredientGroupDiv = document.createElement('div');
+      ingredientGroupDiv.classList.add('ingredient-group');
+      ingredientGroupDiv.id = groupId;
+
+      ingredientGroupDiv.innerHTML = `
+        <label for="ingredient-heading-${groupId}">Ingredient Group Heading</label>
+        <input type="text" id="ingredient-heading-${groupId}" placeholder="Enter ingredient group (e.g., Batter)" required>
+        <div class="dynamic-section" id="${groupId}-ingredients">
+          <label>Ingredients for ${groupId}</label>
+        </div>
+        <button type="button" onclick="addIngredient('${groupId}-ingredients')">Add Ingredient</button>
+        <button type="button" class="remove-btn" onclick="removeIngredientGroup('${groupId}')">Remove Group</button>
+      `;
+
+      section.appendChild(ingredientGroupDiv);
+    });
+
+    // Add ingredient input field under a specific group
+    function addIngredient(groupId) {
+      const section = document.getElementById(groupId);
+      const div = document.createElement('div');
+      div.classList.add('dynamic-item');
+      div.innerHTML = `
+        <input type="text" name="ingredients[${groupId}][]" placeholder="Ingredient (e.g., Sugar)" required>
+        <button type="button" class="remove-btn" onclick="removeItem(this)">Remove</button>
+      `;
+      section.appendChild(div);
+    }
+
+    // Add new instruction input field
+    document.getElementById('add-instruction').addEventListener('click', () => {
+      const section = document.getElementById('instructions-section');
+      const div = document.createElement('div');
+      div.classList.add('dynamic-item');
+      div.innerHTML = `
+        <input type="text" name="instructions[]" placeholder="Instruction (e.g., Preheat oven)" required>
+        <button type="button" class="remove-btn" onclick="removeItem(this)">Remove</button>
+      `;
+      section.appendChild(div);
+    });
+
+    // Remove a specific ingredient group
+    function removeIngredientGroup(groupId) {
+      const groupDiv = document.getElementById(groupId);
+      groupDiv.remove();
+    }
+
+    // Remove a specific input field
+    function removeItem(button) {
+      button.parentElement.remove();
+    }
+  </script>
+  <script src="/Website/JavaScript/add-recipe.js"></script>
+</body>
+</html>
