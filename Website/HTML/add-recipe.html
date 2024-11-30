@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,16 +15,21 @@
       border-radius: 8px;
       background: #f9f9f9;
     }
+
     label {
       display: block;
       margin-top: 10px;
       font-weight: bold;
     }
-    input, textarea, button {
+
+    input,
+    textarea,
+    button {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
     }
+
     button {
       background-color: #007bff;
       color: white;
@@ -32,27 +38,33 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #0056b3;
     }
+
     .dynamic-item {
       display: flex;
       align-items: center;
       margin-top: 5px;
     }
+
     .dynamic-item input {
       flex: 1;
       margin-right: 5px;
     }
+
     .dynamic-item button {
       flex: 0;
       width: auto;
       padding: 5px;
       background-color: #dc3545;
     }
+
     .dynamic-item button:hover {
       background-color: #a71d2a;
     }
+
     .ingredient-group {
       margin-top: 20px;
       padding: 10px;
@@ -62,6 +74,7 @@
     }
   </style>
 </head>
+
 <body>
   <form action="/add-recipe" method="POST" enctype="multipart/form-data">
     <h2>Add New Recipe</h2>
@@ -117,7 +130,7 @@
         <div class="dynamic-section" id="${groupId}-ingredients">
           <label>Ingredients for ${groupId}</label>
         </div>
-        <button type="button" onclick="addIngredient('${groupId}-ingredients')">Add Ingredient</button>
+        <button type="button" onclick="addIngredient('${groupId}')">Add Ingredient</button>
         <button type="button" class="remove-btn" onclick="removeIngredientGroup('${groupId}')">Remove Group</button>
       `;
 
@@ -126,11 +139,15 @@
 
     // Add ingredient input field under a specific group
     function addIngredient(groupId) {
-      const section = document.getElementById(groupId);
+      const section = document.getElementById(`${groupId}-ingredients`);
       const div = document.createElement('div');
       div.classList.add('dynamic-item');
+
+      // Get the heading for the ingredient group
+      const heading = document.getElementById(`ingredient-heading-${groupId}`).value;
+
       div.innerHTML = `
-        <input type="text" name="ingredients[${groupId}][]" placeholder="Ingredient (e.g., Sugar)" required>
+        <input type="text" name="ingredients[${heading}][]" placeholder="Ingredient (e.g., Sugar)" required>
         <button type="button" class="remove-btn" onclick="removeItem(this)">Remove</button>
       `;
       section.appendChild(div);
@@ -159,6 +176,8 @@
       button.parentElement.remove();
     }
   </script>
+
   <script src="/Website/JavaScript/add-recipe.js"></script>
 </body>
+
 </html>

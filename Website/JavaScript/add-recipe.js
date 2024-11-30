@@ -1,4 +1,3 @@
-// Collect the form data
 const form = document.querySelector('form');
 form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent default form submission
@@ -7,38 +6,33 @@ form.addEventListener('submit', async (event) => {
 
     // Collect ingredients into an object
     for (let [key, value] of formData.entries()) {
-        if (key.startsWith('ingredients[')) {
-            const groupKey = key.match(/ingredients\[(.*?)\]/)[1]; // Extract group ID
-            if (!ingredientsMap[groupKey]) {
-                ingredientsMap[groupKey] = []; // Initialize array for this group if not exists
+        const match = key.match(/ingredients\[(.+?)\]\[(\d+)\]/);
+        if (match) {
+            const headingValue = match[1]; // Get the group heading
+            // Add the ingredient to the corresponding heading in the ingredientsMap
+            if (!ingredientsMap[headingValue]) {
+                ingredientsMap[headingValue] = []; // Initialize array for this heading
             }
-            ingredientsMap[groupKey].push(value); // Add the ingredient to the appropriate group
+            ingredientsMap[headingValue].push(value); // Push the ingredient into the array for the correct heading
         }
     }
 
-    // Prepare the JSON payload
-    const payload = {
-        title: formData.get('title'),
-        full_description: formData.get('full_description'),
-        photo: formData.get('photo'),
-        categories: formData.get('categories').split(','), // Split categories into an array
-        ingredients: ingredientsMap, // Use the collected ingredients object
-        instructions: formData.getAll('instructions[]'), // Collect all instructions
-    };
+    // Append the structured ingredients and instructions to formData
+    formData.set('ingredients', JSON.stringify(ingredientsMap)); // Send as a JSON string
+    formData.set('instructions', JSON.stringify(formData.getAll('instructions[]'))); // Send instructions as JSON string
 
     try {
-        const response = await fetch('/add-recipe', {
+        const response = await fetch('/add-recipe', { // Ensure the correct endpoint
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
+            body: formData, // Send FormData directly
         });
 
         const result = await response.json();
         if (response.ok) {
             alert('Recipe added successfully!');
             form.reset(); // Reset form fields after successful submission
+            ingredientGroupCount = 0; // Reset ingredient group count
+            document.getElementById('ingredients-section').innerHTML = ''; // Clear ingredient section
         } else {
             console.error('Error adding recipe:', result.error);
             alert('Failed to add recipe. Please try again.');
