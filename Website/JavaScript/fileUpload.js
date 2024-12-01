@@ -4,10 +4,9 @@ const path = require('path');
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Specify your uploads directory
+        cb(null, path.join(__dirname, '..', 'uploads')); // Specify your uploads directory
     },
     filename: (req, file, cb) => {
-        // Set the file name to be unique
         cb(null, Date.now() + path.extname(file.originalname)); // Add timestamp to the original file name
     }
 });
@@ -31,4 +30,10 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // Limit file size to 5MB
 });
 
-module.exports = upload;
+// Function to generate the public URL for uploaded files
+const getPublicUrl = (filename) => {
+    return `/uploads/${filename}`; // Public URL for the file
+};
+
+// Export the upload middleware and the public URL function
+module.exports = { upload, getPublicUrl };
