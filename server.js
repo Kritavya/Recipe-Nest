@@ -11,6 +11,11 @@ app.use(express.json());
 // Serve static files
 app.use(express.static(path.join(__dirname, 'Website')));
 
+// Set hbs as the templating engine
+const hbs = require('hbs');
+hbs.registerPartials(path.join(__dirname, 'Website', 'views'));
+
+
 // Connect to MongoDB
 connectDB();
 
