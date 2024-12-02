@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./Website/Dbcon/connectdb/connect');
 const recipeRoutes = require('./Website/JavaScript/recipeRoutes');
+const authRoutes = require('./Website/JavaScript/authRoutes');
 const path = require('path');
 require('dotenv').config(); // Load environment variables
 
@@ -23,7 +24,7 @@ hbs.registerPartials(path.join(__dirname, 'Website', 'views', 'partials'));
 connectDB();
 
 // Define routes
-// app.use('/add-recipe', recipeRoutes);
+app.use('/auth', authRoutes);
 app.use('/', recipeRoutes); // This allows accessing /add-recipe as expected
 
 // Start server
