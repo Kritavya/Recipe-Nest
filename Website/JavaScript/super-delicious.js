@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 }).join('');
 
-                const formattedLink = `recipe.html?title=${encodeURIComponent(recipe.title)}`;
+                const formattedLink = `recipe?title=${encodeURIComponent(recipe.title)}`;
 
                 section.innerHTML += `
                     <div class="col-md-4">

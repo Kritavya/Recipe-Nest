@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add New Recipe</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/CSS/RecipeNestStyle.css">
   <style>
     form {
       max-width: 600px;
@@ -76,6 +77,9 @@
 </head>
 
 <body>
+  <div class="container">
+    <%- include('../views/partials/header') %>
+  </div>
   <form action="/add-recipe" method="POST" enctype="multipart/form-data">
     <h2>Add New Recipe</h2>
 
@@ -178,6 +182,7 @@
   </script>
 
   <script src="/Website/JavaScript/add-recipe.js"></script>
+  <%- include('../views/partials/footer') %>
 </body>
 
 </html>

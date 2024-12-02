@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).join('');
 
                 // Create a URL with the title parameter encoded
-                const formattedLink = `recipe.html?title=${encodeURIComponent(dessert.title)}`;
+                const formattedLink = `recipe?title=${encodeURIComponent(dessert.title)}`;
 
                 section.innerHTML += `
                     <div class="col-md-4">

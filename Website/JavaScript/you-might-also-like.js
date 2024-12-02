@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             recipes.forEach(recipe => {
                 // URL-encode the title for the link
-                const formattedLink = `recipe.html?title=${encodeURIComponent(recipe.title)}`;
+                const formattedLink = `recipe?title=${encodeURIComponent(recipe.title)}`;
 
                 const recipeHTML = `
                     <div class="col-lg-3 col-md-4 col-6">

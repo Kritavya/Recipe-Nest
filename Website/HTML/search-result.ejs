@@ -11,7 +11,7 @@
 <body>
 	<section class="RecipeNest-section p-0">
 		<div class="container">
-			<header class="RecipeNest-header">
+			<!-- <header class="RecipeNest-header">
                 <nav class="navbar navbar-expand-lg has-header-inner px-0">
                     <a class="navbar-brand" href="Website_First_Page.html">
                         <img src="/Images/Logo/logo.png" alt="Recipe Nest" style="max-width: 161px; max-height: 100px;">
@@ -67,7 +67,8 @@
                         </ul>
                     </div>
                 </nav>
-            </header>
+            </header> -->
+			<%- include('../views/partials/header') %>
 		</div>
 		<!-- RecipeNest Search -->
 		<div class="RecipeNest-search">
@@ -440,7 +441,7 @@
 			</section>
 		</div>
 		<!-- RecipeNest Footer, Pt 3, Pt Md 5, Mt 5 -->
-		<footer class="RecipeNest-footer pt-3 pt-md-5 mt-5 bg-lightest-gray">
+		<!-- <footer class="RecipeNest-footer pt-3 pt-md-5 mt-5 bg-lightest-gray">
 			<div class="container">
 				<div class="row pt-4 pb-0 pb-md-5">
 					<div class="col-md-6">
@@ -559,7 +560,8 @@
 					</div>
 				</div>
 			</div>
-		</footer>
+		</footer> -->
+		<%- include('../views/partials/footer') %>
 	</section>
 
 	<script src="/JavaScript/search-page.js"></script>

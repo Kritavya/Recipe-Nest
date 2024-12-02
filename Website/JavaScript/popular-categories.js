@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             section.innerHTML = ''; // Clear any pre-existing content
 
             categories.forEach((category, index) => {
-                const formattedLink = `category.html?title=${encodeURIComponent(category.title)}`;
+                const formattedLink = `category?title=${encodeURIComponent(category.title)}`;
 
                 section.innerHTML += `
                     <div class="col-lg-2 col-md-4 col-4">

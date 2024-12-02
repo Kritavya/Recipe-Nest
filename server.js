@@ -11,16 +11,19 @@ app.use(express.json());
 // Serve static files
 app.use(express.static(path.join(__dirname, 'Website')));
 
-// Set hbs as the templating engine
-const hbs = require('hbs');
-hbs.registerPartials(path.join(__dirname, 'Website', 'views'));
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'Website', 'HTML'));
 
+// Configure partials path
+const hbs = require('hbs');
+hbs.registerPartials(path.join(__dirname, 'Website', 'views', 'partials'));
 
 // Connect to MongoDB
 connectDB();
 
 // Define routes
-app.use('/add-recipe', recipeRoutes);
+// app.use('/add-recipe', recipeRoutes);
 app.use('/', recipeRoutes); // This allows accessing /add-recipe as expected
 
 // Start server

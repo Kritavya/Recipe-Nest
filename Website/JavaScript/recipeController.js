@@ -1,30 +1,6 @@
 const Recipe = require('../Dbcon/model/model');
 const { getPublicUrl } = require('./fileUpload');
 
-// function to add a recipe
-// const addRecipe = async (req, res) => {
-//     try {
-//         const { title, full_description, categories, ingredients, instructions } = req.body;
-//         // const photo = req.file.path.replace(/\\/g, '/');; // Assume you're using multer for file uploads
-//         req.file ? getPublicUrl(req.file.filename) : null;
-
-//         const newRecipe = new Recipe({
-//             title,
-//             full_description,
-//             photo,
-//             categories: categories.split(',').map(category => category.trim()),
-//             ingredients,
-//             instructions,
-//         });
-
-//         await newRecipe.save();
-//         res.status(201).json({ message: 'Recipe added successfully!', recipe: newRecipe });
-//     } catch (error) {
-//         console.error('Error adding recipe:', error);
-//         res.status(500).json({ error: 'Failed to add recipe. Please try again.' });
-//     }
-// };
-
 const addRecipe = async (req, res) => {
     try {
         const { title, full_description, categories, ingredients, instructions } = req.body;

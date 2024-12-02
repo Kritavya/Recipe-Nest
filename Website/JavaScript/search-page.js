@@ -139,11 +139,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             const recipeHTML = `
                                 <div class="col-lg-3 col-md-4 col-6">
                                     <figure class="my-3 my-md-4 RecipeNest-card">
-                                        <a href="recipe.html?title=${encodeURIComponent(recipe.title)}" class="RecipeNest-animation stretched-link rounded-6">
+                                        <a href="recipe?title=${encodeURIComponent(recipe.title)}" class="RecipeNest-animation stretched-link rounded-6">
                                             <img src="${recipe.photo}" class="w-100" alt="${recipe.title}">
                                         </a>
                                         <figcaption class="mt-2">
-                                            <a href="recipe.html?title=${encodeURIComponent(recipe.title)}" class="text-black d-block mt-1 font-weight-semibold big">${recipe.title}</a>
+                                            <a href="recipe?title=${encodeURIComponent(recipe.title)}" class="text-black d-block mt-1 font-weight-semibold big">${recipe.title}</a>
                                         </figcaption>
                                     </figure>
                                 </div>

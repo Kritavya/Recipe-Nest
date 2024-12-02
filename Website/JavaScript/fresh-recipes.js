@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             recipes.forEach(recipe => {
                 // URL-encode the title for the link
-                const formattedLink = `recipe-sidebar.html?title=${encodeURIComponent(recipe.title)}`;
+                const formattedLink = `recipe?title=${encodeURIComponent(recipe.title)}`;
 
                 const recipeHTML = `
                     <figure class="mt-4 pb-2 row g-0 align-items-center RecipeNest-card">

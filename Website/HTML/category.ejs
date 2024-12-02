@@ -12,7 +12,7 @@
     <section class="RecipeNest-section p-0">
         <div class="container">
             <!-- Header -->
-            <header class="RecipeNest-header">
+            <!-- <header class="RecipeNest-header">
                 <nav class="navbar navbar-expand-lg has-header-inner px-0">
                     <a class="navbar-brand" href="Website_First_Page.html">
                         <img src="/Images/Logo/logo.png" alt="Recipe Nest" style="max-width: 161px; max-height: 100px;">
@@ -68,8 +68,8 @@
                         </ul>
                     </div>
                 </nav>
-            </header>
-
+            </header> -->
+            <%- include('../views/partials/header') %>
         <section class="RecipeNest-components my-4 my-md-5">
             <h5 class="py-3 mb-3 mb-lg-5 h2 border-bottom border-gray-200">Categories</h5>
             <div class="row categories">
@@ -278,7 +278,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="RecipeNest-footer pt-3 pt-md-5 mt-5 bg-lightest-gray">
+        <!-- <footer class="RecipeNest-footer pt-3 pt-md-5 mt-5 bg-lightest-gray">
             <div class="container">
                 <div class="row pt-4 pb-0 pb-md-5">
                     <div class="col-md-6">
@@ -398,7 +398,8 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
+        <%- include('../views/partials/footer') %>
     </section>
 
     <script src="/JavaScript/category.js"></script>
